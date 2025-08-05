@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import GenerativeMeshCanvas from "./components/GenerativeMeshCanvas";
 import HomePage from "./pages/HomePage";
 import WorkPage from "./pages/WorkPage";
+import AboutPage from "./pages/AboutPage"; // <-- 1. IMPORT THE NEW PAGE
 import "./App.css";
 
 function App() {
@@ -23,7 +24,8 @@ function App() {
             </Link>
           </div>
           <div className="flex-1 text-center">
-            <Link to="/" className="hover:text-gray-300 transition-colors">
+            {/* 2. UPDATE THE LINK TO POINT TO /about */}
+            <Link to="/about" className="hover:text-gray-300 transition-colors">
               About
             </Link>
           </div>
@@ -42,6 +44,8 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/work" element={<WorkPage />} />
+            <Route path="/about" element={<AboutPage />} />{" "}
+            {/* <-- 3. ADD THE NEW ROUTE */}
           </Routes>
         </div>
       </main>
