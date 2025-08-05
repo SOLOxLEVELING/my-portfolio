@@ -62,7 +62,8 @@
   }
 }
 
-/* A helper class to apply the animation */
 .fade-in-up {
+  /* We set opacity to 0 initially to prevent a flash before the animation starts */
+  opacity: 0;
   animation: fadeIn-up 0.8s ease-out forwards;
 }

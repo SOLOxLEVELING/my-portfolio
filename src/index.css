@@ -1,7 +1,37 @@
+/* src/index.css */
+
 @import "tailwindcss";
+
+/* Your font imports from Google Fonts are perfect */
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@200..800&display=swap");
 
-@theme {
-  --font-display: "Bebas+Neue", sans-serif;
+/* --- ADD THIS RULE --- */
+/* This ensures the entire page structure can have a full height */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
+
+@theme {
+  /* --- FONTS --- */
+  /* This creates the `font-display` utility class because it uses the --font-* namespace */
+  --font-display: "Bebas Neue", sans-serif;
+
+  /* This overrides the default `font-sans` utility class */
+  --font-sans: "Manrope", sans-serif;
+
+  /* --- TEXT SHADOW --- */
+  /* This creates the `text-shadow-sm` utility class because it uses the --text-shadow-* namespace */
+  --text-shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4);
+
+  /* This creates the `text-shadow-md` utility class */
+  --text-shadow-md: 0 2px 8px rgb(0 0 0 / 0.5);
+}
+
+/* The @layer utilities block is no longer needed because Tailwind v4
+  automatically generates the classes from the theme variables above.
+*/
