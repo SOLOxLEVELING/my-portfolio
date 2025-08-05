@@ -25,19 +25,19 @@ const HomePage = () => {
           style={{ animationDelay: "400ms" }}
         >
           <a
-            href="#"
+            href="https://github.com/SOLOxLEVELING"
             className="text-gray-300 hover:text-white transform hover:-translate-y-1 transition-all duration-300 text-shadow-sm"
           >
             GitHub
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/solo-leveling-793681263/"
             className="text-gray-300 hover:text-white transform hover:-translate-y-1 transition-all duration-300 text-shadow-sm"
           >
             LinkedIn
           </a>
           <a
-            href="#"
+            href="https://www.fiverr.com/users/adnan1652000"
             className="text-gray-300 hover:text-white transform hover:-translate-y-1 transition-all duration-300 text-shadow-sm"
           >
             Fiverr
