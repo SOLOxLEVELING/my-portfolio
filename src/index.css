@@ -1,37 +1,23 @@
-/* src/index.css */
-
 @import "tailwindcss";
-
-/* Your font imports from Google Fonts are perfect */
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Libre+Baskerville:wght@400;700&family=Space+Grotesk:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
-/* --- ADD THIS RULE --- */
-/* This ensures the entire page structure can have a full height */
+@theme {
+  --font-sans: "Poppins", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+
+  --text-shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4);
+  --text-shadow-md: 0 2px 8px rgb(0 0 0 / 0.5);
+}
+
 html,
 body,
 #root {
   height: 100%;
   margin: 0;
   padding: 0;
+
+  /* ✅ Apply global font */
+  font-family: var(--font-sans);
 }
-
-@theme {
-  /* --- FONTS --- */
-  /* This creates the `font-display` utility class because it uses the --font-* namespace */
-  --font-display: "Bebas Neue", sans-serif;
-
-  /* This overrides the default `font-sans` utility class */
-  --font-sans: "Manrope", sans-serif;
-
-  /* --- TEXT SHADOW --- */
-  /* This creates the `text-shadow-sm` utility class because it uses the --text-shadow-* namespace */
-  --text-shadow-sm: 0 1px 3px rgb(0 0 0 / 0.4);
-
-  /* This creates the `text-shadow-md` utility class */
-  --text-shadow-md: 0 2px 8px rgb(0 0 0 / 0.5);
-}
-
-/* The @layer utilities block is no longer needed because Tailwind v4
-  automatically generates the classes from the theme variables above.
-*/

@@ -12,7 +12,7 @@ const HomePage = () => {
       */}
       <section className="flex-grow flex flex-col justify-center items-center text-center">
         <h1
-          className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-tight font-display fade-in-up text-shadow-md mt-48"
+          className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-tight font-[--font-display] fade-in-up text-shadow-md mt-48"
           style={{ animationDelay: "200ms" }}
         >
           ADNAN
@@ -20,7 +20,7 @@ const HomePage = () => {
           SHAIKH
         </h1>
 
-        <div
+        {/* <div
           className="mt-8 flex justify-center space-x-8 text-sm fade-in-up"
           style={{ animationDelay: "400ms" }}
         >
@@ -42,7 +42,7 @@ const HomePage = () => {
           >
             Fiverr
           </a>
-        </div>
+        </div> */}
       </section>
 
       {/* The footer now naturally sits at the bottom because the section above it has expanded. */}

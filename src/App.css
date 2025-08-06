@@ -35,6 +35,9 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
+
+  /* --- 2. APPLY THE ANIMATION HERE --- */
+  animation: pulse-glow 2.5s infinite cubic-bezier(0.66, 0, 0, 1);
 }
 
 .play-button:hover {
@@ -66,4 +69,20 @@
   /* We set opacity to 0 initially to prevent a flash before the animation starts */
   opacity: 0;
   animation: fadeIn-up 0.8s ease-out forwards;
+}
+
+/* --- 1. ADD THIS NEW KEYFRAME RULE --- */
+@keyframes pulse-glow {
+  0% {
+    /* The glow starts invisible and small */
+    box-shadow: 0 0 0 0 rgb(0 255 255 / 0.5);
+  }
+  70% {
+    /* The glow expands and fades out */
+    box-shadow: 0 0 0 15px rgb(0 255 255 / 0);
+  }
+  100% {
+    /* The glow is fully gone, ready to restart */
+    box-shadow: 0 0 0 0 rgb(0 255 255 / 0);
+  }
 }
