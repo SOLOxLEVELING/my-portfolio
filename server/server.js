@@ -41,6 +41,35 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+// This is an EXAMPLE of how to change ContactForm.jsx to use your server.js
+const onSubmit = async (data) => {
+  try {
+    const response = await fetch("http://localhost:3001/api/contact", {
+      // Your server URL
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      reset();
+    } else {
+      // Handle server-side failure
+      console.error("Error from server:", result.message);
+    }
+  } catch (error) {
+    console.error("Submission error:", error);
+  }
+};
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

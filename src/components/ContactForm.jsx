@@ -1,51 +1,49 @@
 // src/components/ContactForm.jsx
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 
 function ContactForm() {
-  // FIX: Paste your Web3Forms Access Key directly here.
-  // This is the most reliable way to ensure it's correct.
-  const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY; // <-- PASTE YOUR KEY HERE
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+  } = useForm({
+    // Set default value for botcheck to ensure it's initially false
+    defaultValues: {
+      botcheck: false,
+    },
+  });
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [status, setStatus] = useState("");
+  const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
-
-    const formData = new FormData();
+  // The 'e' (event) object is crucial here
+  const onSubmit = async (data, e) => {
+    // This is the most reliable way to handle form data for services like Web3Forms
+    const formData = new FormData(e.target);
     formData.append("access_key", WEB3FORMS_ACCESS_KEY);
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("message", message);
-    formData.append("subject", `New Message from ${name} on your Portfolio`);
+    formData.append(
+      "subject",
+      `New Message from ${data.name} on your Portfolio`
+    );
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
+        body: formData, // Use the FormData generated from the form element
       });
 
       const result = await response.json();
 
       if (result.success) {
-        setStatus("Message sent successfully!");
-        setName("");
-        setEmail("");
-        setMessage("");
         setTimeout(() => {
-          setStatus("");
-        }, 5000);
+          reset();
+        }, 3000);
       } else {
-        // IMPROVED ERROR HANDLING: Log the specific error message from the server
         console.error("Error from Web3Forms:", result);
-        setStatus(result.message || "An error occurred.");
       }
     } catch (error) {
       console.error("Submission error:", error);
-      setStatus("An error occurred. Please try again later.");
     }
   };
 
@@ -54,7 +52,17 @@ function ContactForm() {
       <h2 className="text-4xl font-bold text-center mb-8 uppercase tracking-widest font-display text-white">
         Contact
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-6">
+
+      {/* Pass the event to handleSubmit so we can access e.target */}
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* The honeypot field. It's hidden and should not be touched by users. */}
+        {/* Its name "botcheck" is specifically what Web3Forms looks for. */}
+        <input
+          type="checkbox"
+          {...register("botcheck")}
+          style={{ display: "none" }}
+        />
+
         <div>
           <label
             htmlFor="name"
@@ -65,12 +73,15 @@ function ContactForm() {
           <input
             type="text"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className="w-full p-3 bg-gray-900/50 border border-gray-700 rounded-md focus:ring-2 focus:ring-cyan-500 focus:outline-none transition text-white"
+            {...register("name", { required: "Name is required" })}
+            autoFocus
+            className={`w-full p-3 bg-gray-900/50 border ${errors.name ? "border-red-500" : "border-gray-700"} rounded-md focus:ring-2 focus:ring-cyan-500 focus:outline-none transition text-white`}
           />
+          {errors.name && (
+            <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+          )}
         </div>
+
         <div>
           <label
             htmlFor="email"
@@ -81,12 +92,20 @@ function ContactForm() {
           <input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full p-3 bg-gray-900/50 border border-gray-700 rounded-md focus:ring-2 focus:ring-cyan-500 focus:outline-none transition text-white"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^\S+@\S+$/i,
+                message: "Invalid email format",
+              },
+            })}
+            className={`w-full p-3 bg-gray-900/50 border ${errors.email ? "border-red-500" : "border-gray-700"} rounded-md focus:ring-2 focus:ring-cyan-500 focus:outline-none transition text-white`}
           />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+          )}
         </div>
+
         <div>
           <label
             htmlFor="message"
@@ -97,22 +116,38 @@ function ContactForm() {
           <textarea
             id="message"
             rows="5"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            required
-            className="w-full p-3 bg-gray-900/50 border border-gray-700 rounded-md focus:ring-2 focus:ring-cyan-500 focus:outline-none transition text-white"
+            {...register("message", {
+              required: "Message is required",
+              maxLength: {
+                value: 1000,
+                message: "Message cannot exceed 1000 characters",
+              },
+            })}
+            className={`w-full p-3 bg-gray-900/50 border ${errors.message ? "border-red-500" : "border-gray-700"} rounded-md focus:ring-2 focus:ring-cyan-500 focus:outline-none transition text-white`}
           ></textarea>
+          {errors.message && (
+            <p className="text-red-500 text-sm mt-1">
+              {errors.message.message}
+            </p>
+          )}
         </div>
+
         <div className="text-center">
           <button
             type="submit"
-            className="px-8 py-3 font-semibold text-white bg-cyan-600 rounded-md hover:bg-cyan-700 transition-colors"
+            disabled={isSubmitting}
+            className="px-8 py-3 font-semibold text-white bg-cyan-600 rounded-md hover:bg-cyan-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
           >
-            Send Message
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </div>
       </form>
-      {status && <p className="text-center mt-4 text-white">{status}</p>}
+
+      {isSubmitSuccessful && (
+        <p className="text-center mt-4 text-green-400">
+          Message sent successfully!
+        </p>
+      )}
     </div>
   );
 }

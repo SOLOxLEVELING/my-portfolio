@@ -45,9 +45,12 @@ const HomePage = () => {
         </div> */}
       </section>
 
-      {/* The footer now naturally sits at the bottom because the section above it has expanded. */}
+      {/* The footer now has updated styles and animations */}
       <footer className="flex justify-between items-end">
-        <div className="text-sm text-gray-300 text-shadow-sm">
+        <div
+          className="text-base text-gray-200 text-shadow-sm fade-in-up"
+          style={{ animationDelay: "600ms" }}
+        >
           <p>Full-Stack Web Development</p>
           <p>Video Editing</p>
           <p>Software Development</p>
@@ -66,7 +69,10 @@ const HomePage = () => {
               </textPath>
             </text>
           </svg>
-          <div className="play-button">▶</div>
+          {/* CHANGED: This div is now a button */}
+          <button type="button" className="play-button">
+            ▶
+          </button>
         </div>
       </footer>
     </div>

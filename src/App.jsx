@@ -13,12 +13,11 @@ function App() {
   const [isContactModalOpen, setContactModalOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // THIS IS THE FINAL, CORRECTED STYLING FUNCTION
-  // It applies the hover effect to ALL links.
-  // It then separately sets the base color: white if active, grey if inactive.
+  // Updated style for NavLinks with better contrast
   const navLinkStyles = ({ isActive }) => {
     const baseClasses = "transition-colors duration-300 hover:text-cyan-400";
-    const statusClasses = isActive ? "text-white" : "text-gray-500";
+    // CHANGED: text-gray-500 is now text-gray-400
+    const statusClasses = isActive ? "text-white" : "text-gray-400";
     return `${baseClasses} ${statusClasses}`;
   };
 
@@ -56,7 +55,7 @@ function App() {
           <div className="hidden md:block">
             <button
               onClick={() => setContactModalOpen(true)}
-              className="text-gray-500 hover:text-cyan-400 transition-colors font-semibold tracking-widest uppercase"
+              className="text-gray-400 hover:text-cyan-400 transition-colors font-semibold tracking-widest uppercase"
             >
               Contact
             </button>
