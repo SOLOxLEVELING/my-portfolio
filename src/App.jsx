@@ -88,6 +88,8 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </div>
+        {/* 2. ADD THE SIDEBAR COMPONENT HERE */}
+        <SocialSidebar />
       </main>
 
       <ContactModal
@@ -140,8 +142,6 @@ function App() {
           </nav>
         </div>
       )}
-      {/* 2. ADD THE SIDEBAR COMPONENT HERE */}
-      <SocialSidebar />
     </div>
   );
 }

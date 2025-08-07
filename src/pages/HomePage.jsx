@@ -3,52 +3,37 @@ import React from "react";
 
 const HomePage = () => {
   return (
-    // This is the main flex container for the page. It's a vertical column that fills the available height.
-    <div className="flex flex-col h-full">
-      {/* This section now contains your main content. 'flex-grow' is the key.
-          It tells this section to expand and take up all available empty space,
-          which naturally pushes the footer down to the bottom.
-          The other flex classes center your text within this expanded space.
-      */}
-      <section className="flex-grow flex flex-col justify-center items-center text-center">
+    <div className="flex flex-col min-h-screen">
+      <section className="flex-1 flex flex-col justify-center items-center text-center px-4">
         <h1
-          className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-tight font-[--font-display] fade-in-up text-shadow-md mt-48"
+          className="
+      text-5xl 
+      sm:text-6xl md:text-8xl lg:text-9xl 
+      font-bold tracking-tighter leading-tight font-[--font-display] fade-in-up text-shadow-md 
+    "
           style={{ animationDelay: "200ms" }}
         >
           ADNAN
           <br />
           SHAIKH
         </h1>
-
-        {/* <div
-          className="mt-8 flex justify-center space-x-8 text-sm fade-in-up"
-          style={{ animationDelay: "400ms" }}
-        >
-          <a
-            href="https://github.com/SOLOxLEVELING"
-            className="text-gray-300 hover:text-white transform hover:-translate-y-1 transition-all duration-300 text-shadow-sm"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/solo-leveling-793681263/"
-            className="text-gray-300 hover:text-white transform hover:-translate-y-1 transition-all duration-300 text-shadow-sm"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://www.fiverr.com/users/adnan1652000"
-            className="text-gray-300 hover:text-white transform hover:-translate-y-1 transition-all duration-300 text-shadow-sm"
-          >
-            Fiverr
-          </a>
-        </div> */}
       </section>
 
-      {/* The footer now has updated styles and animations */}
-      <footer className="flex justify-between items-end">
+      <footer
+        className="
+    flex flex-col items-center gap-8 
+    md:flex-row md:justify-between md:items-end 
+    px-6 pb-6
+  "
+      >
         <div
-          className="text-base text-gray-200 text-shadow-sm fade-in-up"
+          className="
+            text-base text-gray-200 text-shadow-sm fade-in-up 
+            /* On mobile, center the text */
+            text-center 
+            /* On desktop, align text to the left */
+            md:text-left
+          "
           style={{ animationDelay: "600ms" }}
         >
           <p>Full-Stack Web Development</p>
@@ -56,7 +41,13 @@ const HomePage = () => {
           <p>Software Development</p>
         </div>
 
-        <div className="showreel-container">
+        <div
+          className="
+            showreel-container 
+            /* Responsive size for the showreel button */
+            w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]
+          "
+        >
           <svg viewBox="0 0 100 100" className="circular-text">
             <path
               id="circlePath"
@@ -69,7 +60,6 @@ const HomePage = () => {
               </textPath>
             </text>
           </svg>
-          {/* CHANGED: This div is now a button */}
           <button type="button" className="play-button">
             ▶
           </button>
