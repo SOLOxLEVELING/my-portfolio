@@ -23,9 +23,9 @@ const SocialSidebar = () => {
         /* --- Mobile First Styles (default) --- */
         flex justify-center w-full pt-8 mt-auto 
         
-        /* --- THE FIX: Desktop styles now create a fixed-width centering container --- */
+        /* --- THE FIX: Desktop styles now create a fixed-width centering containerr --- */
         md:fixed md:left-0 md:top-1/2 md:-translate-y-1/2 md:z-10
-        md:w-24 /* 1. Give the container a specific width */
+        md:w-24 /* 1. Give the containerr a specific width */
         md:flex md:justify-center /* 2. Center the content (the nav) inside it */
       "
     >
