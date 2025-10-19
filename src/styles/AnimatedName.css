@@ -1,0 +1,48 @@
+.animated-name {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  color: white;
+
+  /* Match the font styles from your original HomePage component */
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-display);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+
+  /* MOBILE-FIRST FONT SIZES */
+  /* Base size (matches text-5xl) */
+  font-size: 3rem;
+  line-height: 1.1;
+}
+
+.animated-name span {
+  display: inline-block;
+  /* Only apply transition on devices that can hover */
+  @media (hover: hover) {
+    transition: transform 0.3s ease-out;
+  }
+}
+
+/* sm: (640px) - matches sm:text-6xl */
+@media (min-width: 640px) {
+  .animated-name {
+    font-size: 3.75rem;
+  }
+}
+
+/* md: (768px) - matches md:text-8xl */
+@media (min-width: 768px) {
+  .animated-name {
+    font-size: 6rem;
+  }
+}
+
+/* lg: (1024px) - matches lg:text-9xl */
+@media (min-width: 1024px) {
+  .animated-name {
+    font-size: 8rem;
+  }
+}

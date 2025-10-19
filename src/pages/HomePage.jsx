@@ -1,37 +1,26 @@
 // src/pages/HomePage.jsx
 import React from "react";
+import AnimatedName from "../components/AnimatedName.jsx"; // Make sure path is correct
 
 const HomePage = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <section className="flex-1 flex flex-col justify-center items-center text-center px-4">
-        <h1
-          className="
-      text-5xl 
-      sm:text-6xl md:text-8xl lg:text-9xl 
-      font-bold tracking-tighter leading-tight font-[--font-display] fade-in-up text-shadow-md 
-    "
-          style={{ animationDelay: "200ms" }}
-        >
-          ADNAN
-          <br />
-          SHAIKH
-        </h1>
+        {/* Replace the static h1 with our new animated component */}
+        <AnimatedName />
       </section>
 
       <footer
         className="
-    flex flex-col items-center gap-8 
-    md:flex-row md:justify-between md:items-end 
-    px-6 pb-6
-  "
+          flex flex-col items-center gap-8 
+          md:flex-row md:justify-between md:items-end 
+          px-6 pb-6 z-10
+        "
       >
         <div
           className="
             text-base text-gray-200 text-shadow-sm fade-in-up 
-            /* On mobile, center the text */
             text-center 
-            /* On desktop, align text to the left */
             md:text-left
           "
           style={{ animationDelay: "600ms" }}
@@ -44,7 +33,6 @@ const HomePage = () => {
         <div
           className="
             showreel-container 
-            /* Responsive size for the showreel button */
             w-[120px] h-[120px] sm:w-[150px] sm:h-[150px]
           "
         >
