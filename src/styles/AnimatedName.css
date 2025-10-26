@@ -1,48 +1,59 @@
 .animated-name {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 100%;
   text-align: center;
   color: white;
-
-  /* Match the font styles from your original HomePage component */
   font-weight: bold;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-family: var(--font-display);
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-
-  /* MOBILE-FIRST FONT SIZES */
   font-size: 3rem;
   line-height: 1.1;
 }
 
 .animated-name span {
   display: inline-block;
-  /* THIS IS THE FIX: 
-    The transition now applies to all devices, not just 'hover'.
-    This makes the letters animate back smoothly on 'touchend'.
-  */
   transition: transform 0.3s ease-out;
 }
 
-/* sm: (640px) */
-@media (min-width: 640px) {
-  .animated-name {
-    font-size: 3.75rem;
-  }
+/* --- RESPONSIVE LOGIC --- */
+
+/* Mobile (default): line break visible, space hidden */
+.animated-break {
+  display: block;
 }
 
-/* md: (768px) */
+.animated-space {
+  display: none;
+}
+
+/* Desktop (768px+): hide break, show inline space */
 @media (min-width: 768px) {
+  .animated-break {
+    display: none;
+  }
+
+  .animated-space {
+    display: inline-block;
+    white-space: pre;
+    width: 0.5em;
+  }
+
   .animated-name {
     font-size: 6rem;
   }
 }
 
-/* lg: (1024px) */
+/* Between 640–767px */
+@media (min-width: 640px) and (max-width: 767px) {
+  .animated-name {
+    font-size: 3.75rem;
+  }
+}
+
+/* Large screens (1024px+) */
 @media (min-width: 1024px) {
   .animated-name {
-    font-size: 8rem;
+    font-size: 6rem;
   }
 }
