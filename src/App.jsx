@@ -6,7 +6,8 @@ import ContactModal from "./components/ContactModal";
 import HomePage from "./pages/HomePage";
 import WorkPage from "./pages/WorkPage";
 import AboutPage from "./pages/AboutPage";
-import SocialSidebar from "./components/SocialSidebar"; // <-- 1. IMPORT
+import SocialSidebar from "./components/SocialSidebar";
+import { initClarity } from "./clarity";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
   };
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  useEffect(() => {
+    initClarity();
+  }, []);
 
   return (
     <div className="relative min-h-screen font-sans">
