@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 import WorkPage from "./pages/WorkPage";
 import AboutPage from "./pages/AboutPage";
 import SocialSidebar from "./components/SocialSidebar";
-import { initClarity } from "./clarity";
+import Clarity from "@microsoft/clarity";
 import "./App.css";
 
 function App() {
@@ -25,7 +25,9 @@ function App() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   useEffect(() => {
-    initClarity();
+    if (import.meta.env.MODE === "production") {
+      Clarity.init(import.meta.env.VITE_CLARITY_ID);
+    }
   }, []);
 
   return (
